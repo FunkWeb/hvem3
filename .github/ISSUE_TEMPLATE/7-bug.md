@@ -1,5 +1,5 @@
 ---
-name: Bug
+name: 7-Bug
 about: Report a bug that needs to be fixed
 title: bug/[brief-description]
 labels: bug

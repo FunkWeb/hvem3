@@ -1,5 +1,5 @@
 ---
-name: Documentation
+name: 2-Documentation
 about: Documentation updates, improvements, or new documentation needed
 title: doc/[brief-description]
 labels: documentation

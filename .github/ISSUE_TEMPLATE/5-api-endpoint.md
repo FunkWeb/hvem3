@@ -1,5 +1,5 @@
 ---
-name: API endpoint
+name: 5-API endpoint
 about: Create or modify API endpoint
 title: api/[brief-description]
 labels: api

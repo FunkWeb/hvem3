@@ -1,5 +1,5 @@
 ---
-name: Backend
+name: 4-Backend
 about: Database schema changes, migrations, or backend infrastructure
 title: backend/[brief-description]
 labels: backend

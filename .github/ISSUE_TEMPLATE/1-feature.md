@@ -1,5 +1,5 @@
 ---
-name: Feature
+name: 1-Feature
 about: Propose a new feature or enhancement to the project
 title: feature[brief-description]
 labels: feature

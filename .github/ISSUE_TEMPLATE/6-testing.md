@@ -1,5 +1,5 @@
 ---
-name: Testing
+name: 6-Testing
 about: Testing tasks, test coverage improvements, or QA work
 title: test/[brief-description]
 labels: test

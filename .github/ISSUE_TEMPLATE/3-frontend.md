@@ -1,5 +1,5 @@
 ---
-name: Frontend
+name: 3-Frontend
 about: Frontend feature, component, or UI improvement
 title: frontend/[brief-description]
 labels: frontend
