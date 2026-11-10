@@ -10,7 +10,307 @@ This document provides real-world examples of properly filled-out issues using t
 ```
 feature/add-user-email-verification
 ```
+# Example Issues: Learning from Real Cases
 
+These are real issues from the Profile Catalog project, filled in with the **Task** and **Bug** templates. Use them as a guide when you write your own.
+
+Each example shows the **title**, the **template**, who it is **blocked by**, and the **issue text**. The issue text is shown in a box. You can copy it directly into a new issue.
+
+Remember:
+- **Blocked by** is not part of the text. You set it in the right-hand sidebar after you create the issue.
+- There is no "Definition of Done" in the issue. The pull request template is used for that.
+
+---
+
+## Example 1: `feature:` (a new piece of a component)
+
+### Title
+
+```
+feature: ProfileCard - show the photo
+```
+
+**Template:** Task  
+**Blocked by:** #43
+
+**Why this is a good issue:** One file pair, one small change. The criteria say exact values, so they can be tested. Short explanation of why the `alt` text is empty.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `src/components/profileCard/profileCard.tsx`, `src/components/profileCard/profileCard.module.css`
+
+Add the optional profile photo above the name.
+
+---
+
+## Acceptance Criteria
+- [ ] The optional prop `photo` (string) is added.
+- [ ] If `photo` exists, an `<img>` is shown above the name.
+- [ ] The image is round, 150 x 150 px, with `object-fit: cover` (same as the old system).
+- [ ] `alt=""` (empty).
+
+---
+
+## Additional Context
+The name is already text next to the picture, so the picture is decoration. An empty `alt` makes a screen reader read the name only once. The old system used `alt="{name}'s Photo"`, which read the name twice. WCAG 1.1.1.
+
+**Read these first (MDN Web Docs):**
+- [HTML: <img>](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img) – images and the `alt` attribute
+- [Learn: HTML images](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_images) – images and alternative text
+- [CSS: border-radius](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius) – rounded corners, 50% makes a circle
+- [CSS: object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/object-fit) – how an image fills its box (`cover`)
+- [CSS: width](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/width) – element width
+- [CSS: height](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/height) – element height, and why `100%` can be useful
+````
+
+---
+
+## Example 2: `style:` (CSS only)
+
+### Title
+
+```
+style: ProfileCard - card style
+```
+
+**Template:** Task  
+**Blocked by:** #32, #43
+
+**Why this is a good issue:** Only a CSS file is changed, so the tag is `style:`. The criteria say what NOT to do (no hidden content), which protects accessibility.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `src/components/profileCard/profileCard.module.css`
+
+Style the card so it looks like a card.
+
+---
+
+## Acceptance Criteria
+- [ ] Background `--color-surface`, 1px border `--color-border`, rounded corners and padding of at least `1rem`.
+- [ ] The content is centered.
+- [ ] Long words wrap (`overflow-wrap: anywhere`).
+- [ ] No fixed `height`, no `overflow: hidden`, no `text-overflow: ellipsis`. Nothing is hidden.
+
+---
+
+## Additional Context
+WCAG 1.4.4 Resize Text, 1.4.10 Reflow. Test with the long name and long title from the mock data.
+
+**Read these first (MDN Web Docs):**
+- [CSS: background-color](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/background-color) – background color
+- [CSS: border](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border) – width, style and color of a border
+- [CSS: border-radius](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/border-radius) – rounded corners, 50% makes a circle
+- [CSS: padding](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/padding) – space inside an element
+- [CSS: overflow-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-wrap) – breaks long words so they do not stick out
+- [CSS: Introduction to the box model](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/Introduction) – content, padding, border and margin explained
+````
+
+---
+
+## Example 3: `docs:` (documentation)
+
+### Title
+
+```
+docs: README - folder structure
+```
+
+**Template:** Task  
+**Blocked by:** #91
+
+**Why this is a good issue:** Only `README.md` changes. One section per issue keeps it small.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `README.md`
+
+Explain the folders of the project.
+
+---
+
+## Acceptance Criteria
+- [ ] A section "Folder structure" explains `assets/`, `components/`, `features/` and `styles/`.
+- [ ] It explains the naming rules (`camelCase` files, component pair, CSS Modules).
+
+---
+
+## Additional Context
+Use a short list. One line for each folder.
+````
+
+---
+
+## Example 4: `test:` (a report, no code)
+
+### Title
+
+```
+test: Color contrast audit
+```
+
+**Template:** Task  
+**Blocked by:** #67
+
+**Why this is a good issue:** This issue only produces a report file. Problems found become new issues, and are not fixed here.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `ACCESSIBILITY.md`
+
+Check the contrast of every color pair in the page and write down the result.
+
+---
+
+## Acceptance Criteria
+- [ ] The file has the section "Color contrast".
+- [ ] A table lists every text/background pair and every border/icon/focus pair, with the measured ratio.
+- [ ] Text is at least 4.5:1. Borders, icons and focus outlines are at least 3:1.
+- [ ] Each pair that fails has a new issue.
+
+---
+
+## Additional Context
+https://webaim.org/resources/contrastchecker/ · WCAG 1.4.3, 1.4.11.
+
+**Read these first (MDN Web Docs):**
+- [Accessibility: Color contrast](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast) – the 4.5:1 and 3:1 rules
+- [Accessibility: Use of color](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Use_of_color) – never use color alone to show meaning
+- [Accessibility: Perceivable](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable) – WCAG principle: users must be able to see and hear content
+````
+
+---
+
+## Example 5: `chore:` (setup and config)
+
+### Title
+
+```
+chore: Ignore `.env` files in git
+```
+
+**Template:** Task  
+**Blocked by:** none
+
+**Why this is a good issue:** A config file with a small, clear test: create a `.env` file and check `git status`.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `.gitignore`
+
+Make sure `.env` files can never be committed by accident.
+
+---
+
+## Acceptance Criteria
+- [ ] `.env`, `.env.local` and `.env.*.local` are in `.gitignore`.
+- [ ] Test: create an empty `.env` file and run `git status`. It must **not** be listed.
+- [ ] Delete your test file when you are done, or keep it for local use. Never commit it.
+
+---
+
+## Additional Context
+If you ever commit a secret by accident, tell your supervisor immediately. Deleting it in a new commit is not enough, because it stays in the git history.
+````
+
+---
+
+## Example 6: `fix:` (a bug, with the Bug template)
+
+### Title
+
+```
+fix: ProfileCard - job title is cut off
+```
+
+**Template:** Bug  
+**Blocked by:** none
+
+**Why this is a good issue:** The steps say exactly how to see the problem, the screen width is included, and the criteria say how to know it is fixed.
+
+### Issue text
+
+````markdown
+## Description
+**Files:** `src/components/profileCard/profileCard.module.css`
+
+The job title is cut off with "..." when it is long. The whole job title must be visible.
+
+**Steps to reproduce** (skip for typos):
+1. Run `npm run dev`.
+2. Open the group **Ansatte**.
+3. Find the person with a very long job title.
+
+**Browser and screen width:** Chrome, 320px
+
+---
+
+## Acceptance Criteria
+- [ ] The problem can no longer be reproduced.
+- [ ] The whole job title is visible at 320px and at 1200px wide.
+- [ ] The other cards in the same row still have the same height.
+
+---
+
+## Additional Context
+Look for `text-overflow: ellipsis`, `overflow: hidden` or a fixed `height` in `profileCard.module.css`. Text must wrap to the next line, and never be cut off.
+
+WCAG 1.4.4 Resize Text, 1.4.10 Reflow.
+
+**Read these first (MDN Web Docs):**
+- [CSS: overflow-wrap](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow-wrap) – breaks long words so they do not stick out
+- [CSS: overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow) – what happens when content is larger than its box
+````
+
+---
+
+## Key Takeaways
+
+### 1. Every title starts with a tag
+`feature:`, `style:`, `docs:`, `test:`, `chore:` or `fix:`. The tag follows the files in the issue.
+
+### 2. One file, or one component pair
+Small issues are easier to start, easier to review and easier to finish.
+
+### 3. Descriptions are short
+One to three sentences: what, and why.
+
+### 4. Acceptance criteria are testable
+Exact names, values and file paths. Tests for this issue are part of the criteria.
+
+### 5. Additional Context helps you start
+Short code examples, WCAG numbers and MDN links.
+
+### 6. "Blocked by" is set in the sidebar
+It is not written in the issue text.
+
+### 7. "Done" is checked in the pull request
+The pull request template has the checklist: build, console, files, colors, contrast and keyboard.
+
+---
+
+## Practice: Create Your Own
+
+1. Pick a small thing you have noticed in the project (for example a missing `alt` text, or a color that is hard to read).
+2. Find out which file it is in. Is it only one file (or one component pair)?
+3. Choose **Task** or **Bug**.
+4. Write the title as `tag: Name`.
+5. Fill in Description (with **Files**), Acceptance Criteria and Additional Context.
+6. Check that no issue like it already exists.
+7. Create it, and set **Blocked by** if needed.
+8. Ask your supervisor to take a look.
+
+Remember: **good issues = smooth development!**
 ### Issue Content
 
 **Description:**
