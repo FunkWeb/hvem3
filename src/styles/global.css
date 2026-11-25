@@ -1,3 +1,4 @@
 /* Global styles are collected here. Order matters */
 
 @import "./reset.css";
+@import "./variables.css";
