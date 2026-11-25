@@ -1,6 +1,6 @@
 :root {
     --color-background: #fff0d4; /*sets the background color*/
-    --color-surface: #fffbf5; /*contrast of 1.09:1. however, this is a design element, and is therefore in accordance with WCAG 1.4.11*/
-    --color-text: #222222; /*contrast of 15.43:1 against --color-surface*/
-    --color-tex-muted: #222222; /*contrast of 15.43:1 against --color-surface. Color guide/wiki doesnt define a "muted text color", so to avoid confusion it's the same color as --color-text*/
+    --color-surface: #fffbf5; /*contrast of 1.09:1 against --color-background. however, this is a design element, and is therefore in accordance with WCAG 1.4.11*/
+    --color-text: #222222; /*contrast of 15.43:1 against --color-surface. contrast of 14.14:1 against --color-background*/
+    --color-text-muted: #222222; /*contrast of 15.43:1 against --color-surface. contrast of 14.14:1 against --color-background. Color guide/wiki doesnt define a "muted text color", so to avoid confusion it's the same color as --color-text*/
 }
